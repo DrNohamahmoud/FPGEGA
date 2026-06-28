@@ -230,7 +230,7 @@ h1,h2,h3,p{margin:0;}
     box-shadow:var(--shadow-1);
     transform:translateY(-12px) scale(.98);
     opacity:0;
-    visibility:hidden;
+    visibility:visible;
     transition:.25s var(--ease);
   }
   .nav-links.open{transform:none;opacity:1;visibility:visible;}
@@ -478,7 +478,7 @@ h1,h2,h3,p{margin:0;}
   display:flex;flex-direction:column;justify-content:center;align-items:center;
   gap:14px;
   text-align:center;
-  overflow:hidden;
+  overflow:visible;
 }
 .visual-card .big-ic{
   width:78px;height:78px;border-radius:50%;
@@ -735,7 +735,7 @@ h1,h2,h3,p{margin:0;}
 .preview-area{
   position:relative;
   border-radius:13px;
-  overflow:hidden;
+  overflow:visible;
   border:1px dashed var(--border);
   background:rgba(255,255,255,0.02);
   min-height:170px;
@@ -826,7 +826,7 @@ body.focus-mode-on::after{
   display:flex;align-items:center;justify-content:center;
   background:rgba(3,7,13,0.86);
   backdrop-filter:blur(8px);
-  opacity:0;visibility:hidden;
+  opacity:0;visibility:visible;
   transition:.25s var(--ease);
   padding:30px;
 }
@@ -879,9 +879,9 @@ footer strong{color:var(--muted);}
 <body>
 
 <!-- خلفية الأورورا والجزيئات (ديكورية بحتة) -->
-<div class="bg-fixed" aria-hidden="true"></div>
-<div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
-<canvas id="particles" aria-hidden="true"></canvas>
+<div class="bg-fixed" aria-visible="true"></div>
+<div class="aurora" aria-visible="true"><span></span><span></span><span></span></div>
+<canvas id="particles" aria-visible="true"></canvas>
 
 <!-- ===================== الشريط العلوي ===================== -->
 <header class="topbar">
@@ -1548,7 +1548,7 @@ footer strong{color:var(--muted);}
     modalName.textContent = name;
     modalRole.textContent = role;
     modal.classList.add('open');
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = 'visible';
   }
   function closeModal(){
     modal.classList.remove('open');
