@@ -1,0 +1,1771 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>مبادرة الوعي البيئي التربوي | نحو جامعة خضراء</title>
+<meta name="description" content="مبادرة وعي تربوي بيئي تهدف إلى ترسيخ قيم الاستدامة في الجامعة والمدارس عبر القصة الرقمية والمحتوى التوعوي.">
+<meta name="theme-color" content="#060B14">
+
+<style>
+/* ===================================================================
+   1) المتغيرات والأساسيات
+=================================================================== */
+:root{
+  --bg-0:#060b14;
+  --bg-1:#0b1626;
+  --bg-2:#0f2036;
+  --panel:rgba(255,255,255,0.045);
+  --panel-strong:rgba(255,255,255,0.08);
+  --border:rgba(255,255,255,0.10);
+  --border-soft:rgba(255,255,255,0.06);
+
+  --sky:#43c8ff;
+  --sky-deep:#1f8fd8;
+  --gold:#eccb78;
+  --gold-deep:#caa23c;
+  --leaf:#3fdba0;
+  --leaf-deep:#1fae7d;
+
+  --ink:#f3f7fb;
+  --muted:#9bb0c7;
+  --muted-2:#6e84a0;
+
+  --radius-lg:26px;
+  --radius-md:18px;
+  --radius-sm:12px;
+
+  --shadow-1:0 18px 45px -20px rgba(0,0,0,0.65);
+  --shadow-gold:0 0 0 1px rgba(236,203,120,0.5),0 20px 60px -18px rgba(236,203,120,0.45);
+
+  --font-main:'DIN Next LT Arabic','Segoe UI','Tahoma','Geneva',sans-serif;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg-0);
+  color:var(--ink);
+  font-family:var(--font-main);
+  line-height:1.78;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+ul{margin:0;padding:0;list-style:none;}
+h1,h2,h3,p{margin:0;}
+:focus-visible{outline:2px solid var(--sky);outline-offset:3px;border-radius:6px;}
+
+.wrap{
+  width:100%;
+  max-width:1180px;
+  margin:0 auto;
+  padding:0 28px;
+}
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.3px;
+  color:var(--sky);
+  background:rgba(67,200,255,0.08);
+  border:1px solid rgba(67,200,255,0.25);
+  padding:7px 16px;
+  border-radius:30px;
+}
+.eyebrow svg{width:14px;height:14px;flex:none;}
+
+.section-head{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  align-items:flex-start;
+  margin-bottom:42px;
+  max-width:720px;
+}
+.section-head h2{
+  font-size:clamp(26px,3.4vw,38px);
+  font-weight:800;
+  line-height:1.35;
+}
+.section-head p{color:var(--muted);font-size:16px;}
+.section-head.center{align-items:center;text-align:center;margin-inline:auto;}
+
+/* ===================================================================
+   2) خلفية الأورورا + الجزيئات (أوراق متوهّجة)
+=================================================================== */
+.bg-fixed{
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  background:
+    radial-gradient(circle at 18% 8%,rgba(67,200,255,0.16),transparent 42%),
+    radial-gradient(circle at 86% 0%,rgba(63,219,160,0.10),transparent 38%),
+    radial-gradient(circle at 50% 100%,rgba(236,203,120,0.07),transparent 45%),
+    linear-gradient(180deg,var(--bg-0) 0%,var(--bg-1) 45%,var(--bg-0) 100%);
+  pointer-events:none;
+}
+.aurora{
+  position:fixed;
+  inset:-10% -10% auto -10%;
+  height:120vh;
+  z-index:-2;
+  pointer-events:none;
+  filter:blur(60px) saturate(120%);
+  opacity:.55;
+  mix-blend-mode:screen;
+}
+.aurora span{
+  position:absolute;
+  width:46vw;
+  height:46vw;
+  border-radius:50%;
+  opacity:.55;
+  animation:drift 26s ease-in-out infinite;
+}
+.aurora span:nth-child(1){background:radial-gradient(circle,var(--sky),transparent 70%);top:0;right:6%;animation-delay:0s;}
+.aurora span:nth-child(2){background:radial-gradient(circle,var(--leaf),transparent 70%);top:18%;left:2%;animation-duration:32s;animation-delay:-6s;}
+.aurora span:nth-child(3){background:radial-gradient(circle,var(--gold),transparent 70%);bottom:-12%;right:28%;width:34vw;height:34vw;animation-duration:38s;animation-delay:-12s;}
+@keyframes drift{
+  0%,100%{transform:translate(0,0) scale(1);}
+  33%{transform:translate(-4%,5%) scale(1.08);}
+  66%{transform:translate(5%,-4%) scale(0.96);}
+}
+#particles{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+}
+
+@media (prefers-reduced-motion:reduce){
+  .aurora span{animation:none;}
+}
+
+/* ===================================================================
+   3) الشريط العلوي
+=================================================================== */
+.topbar{
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:60;
+  background:rgba(6,11,20,0.62);
+  backdrop-filter:blur(16px) saturate(140%);
+  border-bottom:1px solid var(--border-soft);
+}
+.topbar-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  padding:14px 28px;
+  max-width:1180px;
+  margin:0 auto;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:800;
+  font-size:15px;
+  white-space:nowrap;
+}
+.brand .dot{
+  width:11px;height:11px;border-radius:50%;
+  background:linear-gradient(135deg,var(--leaf),var(--sky));
+  box-shadow:0 0 14px rgba(63,219,160,.8);
+  flex:none;
+}
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:4px;
+  flex-wrap:wrap;
+}
+.nav-links a{
+  font-size:13.5px;
+  font-weight:600;
+  color:var(--muted);
+  padding:9px 14px;
+  border-radius:20px;
+  transition:.25s var(--ease);
+  white-space:nowrap;
+}
+.nav-links a:hover,.nav-links a.active{
+  color:var(--ink);
+  background:var(--panel-strong);
+}
+.top-actions{display:flex;align-items:center;gap:8px;}
+.icon-btn{
+  width:38px;height:38px;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--panel);
+  border:1px solid var(--border);
+  transition:.25s var(--ease);
+  flex:none;
+}
+.icon-btn:hover{background:var(--panel-strong);transform:translateY(-2px);}
+.icon-btn svg{width:17px;height:17px;}
+.menu-toggle{display:none;}
+
+@media (max-width:880px){
+  .nav-links{
+    position:fixed;
+    top:64px; right:14px; left:14px;
+    flex-direction:column;
+    align-items:stretch;
+    background:rgba(10,17,28,0.97);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:10px;
+    gap:2px;
+    box-shadow:var(--shadow-1);
+    transform:translateY(-12px) scale(.98);
+    opacity:0;
+    visibility:hidden;
+    transition:.25s var(--ease);
+  }
+  .nav-links.open{transform:none;opacity:1;visibility:visible;}
+  .nav-links a{text-align:center;padding:12px 14px;}
+  .menu-toggle{display:flex;}
+}
+
+/* ===================================================================
+   4) التنقل الجانبي بين الأقسام
+=================================================================== */
+.section-nav{
+  position:fixed;
+  z-index:55;
+  left:18px;
+  bottom:24px;
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+  background:rgba(10,17,28,0.55);
+  backdrop-filter:blur(12px);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:9px;
+}
+.section-nav button{
+  width:40px;height:40px;
+  border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--panel);
+  transition:.22s var(--ease);
+}
+.section-nav button:hover{background:var(--panel-strong);}
+.section-nav button:disabled{opacity:.3;cursor:default;}
+.section-nav svg{width:18px;height:18px;}
+.section-dots{
+  display:flex;flex-direction:column;gap:6px;
+  align-items:center;
+  padding:6px 0;
+}
+.section-dots i{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--muted-2);
+  transition:.25s var(--ease);
+}
+.section-dots i.active{
+  background:var(--sky);
+  height:18px;border-radius:6px;
+}
+
+@media (max-width:640px){
+  .section-nav{
+    left:50%;
+    bottom:14px;
+    transform:translateX(50%);
+    flex-direction:row;
+    align-items:center;
+  }
+  .section-dots{flex-direction:row;}
+  .section-dots i.active{height:6px;width:18px;}
+}
+
+/* ===================================================================
+   5) قسم البداية (Hero)
+=================================================================== */
+.page-section{
+  position:relative;
+  padding:150px 0 110px;
+  scroll-margin-top:80px;
+}
+#home.page-section{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  padding-top:130px;
+}
+.hero-inner{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap:26px;
+  max-width:820px;
+  margin:0 auto;
+}
+.logo-row{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+  margin-bottom:6px;
+  animation:fadeUp .8s var(--ease) both;
+}
+.logo-chip{
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,0.96);
+  border-radius:18px;
+  padding:8px 14px;
+  box-shadow:0 12px 30px -12px rgba(0,0,0,0.5);
+  border:1px solid rgba(255,255,255,0.6);
+}
+.logo-chip img{height:46px;width:auto;display:block;}
+.logo-divider{width:1px;height:34px;background:var(--border);}
+@media (max-width:480px){
+  .logo-chip img{height:34px;}
+  .logo-row{gap:10px;}
+}
+.hero-inner .eyebrow{animation:fadeUp .8s var(--ease) both;}
+.hero-inner h1{
+  font-size:clamp(34px,5.6vw,58px);
+  font-weight:800;
+  line-height:1.28;
+  animation:fadeUp .8s var(--ease) .12s both;
+}
+.hero-inner h1 .accent{
+  background:linear-gradient(95deg,var(--sky),var(--leaf) 60%,var(--gold));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+.hero-inner p.lead{
+  font-size:clamp(15.5px,1.6vw,18px);
+  color:var(--muted);
+  max-width:620px;
+  animation:fadeUp .8s var(--ease) .22s both;
+}
+.quick-actions{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:12px;
+  margin-top:6px;
+  animation:fadeUp .8s var(--ease) .34s both;
+}
+.quick-actions a{
+  display:flex;align-items:center;gap:8px;
+  font-size:14px;font-weight:700;
+  padding:12px 20px;
+  border-radius:30px;
+  border:1px solid var(--border);
+  background:var(--panel);
+  transition:.25s var(--ease);
+}
+.quick-actions a svg{width:15px;height:15px;color:var(--sky);}
+.quick-actions a:hover{
+  background:var(--panel-strong);
+  transform:translateY(-3px);
+  border-color:rgba(67,200,255,.4);
+}
+.quick-actions a.primary{
+  background:linear-gradient(120deg,var(--sky),var(--leaf));
+  color:#04131c;
+  border-color:transparent;
+}
+.quick-actions a.primary svg{color:#04131c;}
+.scroll-cue{
+  margin-top:34px;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  color:var(--muted-2);
+  font-size:12px;
+  animation:fadeUp .8s var(--ease) .46s both;
+}
+.scroll-cue .mouse{
+  width:22px;height:36px;border:2px solid var(--muted-2);border-radius:14px;
+  display:flex;justify-content:center;padding-top:6px;
+}
+.scroll-cue .mouse i{
+  width:3px;height:7px;border-radius:2px;background:var(--sky);
+  animation:scrollDown 1.8s infinite;
+}
+@keyframes scrollDown{0%{opacity:1;transform:translateY(0);}80%{opacity:0;transform:translateY(10px);}100%{opacity:0;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+@media (prefers-reduced-motion:reduce){
+  .hero-inner *{animation:none !important;}
+}
+
+/* ===================================================================
+   6) عناصر مشتركة: كروت + Reveal + Tilt
+=================================================================== */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease);}
+.reveal.in-view{opacity:1;transform:translateY(0);}
+
+.feature-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+@media (max-width:760px){.feature-grid{grid-template-columns:1fr;}}
+
+.feature-card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:var(--radius-md);
+  padding:24px;
+  display:flex;flex-direction:column;gap:12px;
+  box-shadow:var(--shadow-1);
+  transform-style:preserve-3d;
+  will-change:transform;
+  transition:border-color .3s var(--ease),background .3s var(--ease);
+}
+.feature-card:hover{background:var(--panel-strong);border-color:rgba(67,200,255,.3);}
+.feature-card .ic{
+  width:42px;height:42px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(67,200,255,0.12);
+  color:var(--sky);
+  flex:none;
+}
+.feature-card .ic svg{width:21px;height:21px;}
+.feature-card h3{font-size:16.5px;font-weight:700;}
+.feature-card p{font-size:14px;color:var(--muted);}
+
+/* ===================================================================
+   7) أقسام المحتوى (الجامعة/المدارس/همسات/مؤشرات)
+=================================================================== */
+.split{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:46px;
+  align-items:center;
+}
+@media (max-width:860px){.split{grid-template-columns:1fr;}}
+.split .copy p{color:var(--muted);font-size:15.5px;margin-top:14px;}
+.pill-list{display:flex;flex-direction:column;gap:12px;margin-top:22px;}
+.pill-list li{
+  display:flex;align-items:flex-start;gap:12px;
+  background:var(--panel);
+  border:1px solid var(--border-soft);
+  border-radius:14px;
+  padding:13px 16px;
+  font-size:14.5px;
+}
+.pill-list li .ic{
+  width:30px;height:30px;border-radius:9px;flex:none;
+  background:rgba(63,219,160,0.14);color:var(--leaf);
+  display:flex;align-items:center;justify-content:center;
+}
+.pill-list li .ic svg{width:15px;height:15px;}
+.visual-card{
+  position:relative;
+  border-radius:var(--radius-lg);
+  border:1px solid var(--border);
+  background:linear-gradient(160deg,rgba(67,200,255,0.10),rgba(63,219,160,0.06));
+  padding:36px;
+  min-height:280px;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  gap:14px;
+  text-align:center;
+  overflow:hidden;
+}
+.visual-card .big-ic{
+  width:78px;height:78px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,0.07);
+  border:1px solid var(--border);
+}
+.visual-card .big-ic svg{width:36px;height:36px;color:var(--leaf);}
+.visual-card .glow{
+  position:absolute;width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(67,200,255,.35),transparent 70%);
+  filter:blur(10px);
+  top:-40px;right:-40px;
+}
+.visual-card.video-card{
+  padding:14px;
+  gap:10px;
+  background:linear-gradient(160deg,rgba(67,200,255,0.10),rgba(63,219,160,0.06));
+}
+.gu-video{
+  width:100%;
+  border-radius:16px;
+  display:block;
+  background:#000;
+  max-height:320px;
+}
+.video-caption{
+  font-size:12.5px;
+  color:var(--muted);
+  padding:0 8px 4px;
+}
+
+/* همسات تربوية (فيديو) */
+.whisper-video-grid{grid-template-columns:repeat(2,1fr);}
+@media (max-width:760px){.whisper-video-grid{grid-template-columns:1fr;}}
+
+/* مؤشرات بيئية */
+.indicators-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+@media (max-width:860px){.indicators-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:480px){.indicators-grid{grid-template-columns:1fr;}}
+.indicator-card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:var(--radius-md);
+  padding:22px;
+  text-align:center;
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+}
+.indicator-card .ring{
+  width:64px;height:64px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:conic-gradient(var(--sky) 0deg,var(--leaf) 200deg,rgba(255,255,255,.08) 200deg);
+  position:relative;
+}
+.indicator-card .ring::after{
+  content:'';position:absolute;inset:6px;border-radius:50%;background:var(--bg-1);
+}
+.indicator-card .ring svg{width:20px;height:20px;color:var(--leaf);position:relative;z-index:2;}
+.indicator-card h3{font-size:14px;font-weight:700;}
+.indicator-card p{font-size:12.5px;color:var(--muted-2);}
+
+/* ===================================================================
+   8) فريق المبادرة
+=================================================================== */
+.team-top{
+  direction:ltr;
+  display:flex;
+  justify-content:center;
+  gap:42px;
+  flex-wrap:wrap;
+  margin-bottom:-26px;
+  position:relative;
+  z-index:2;
+}
+.team-leader-row{
+  display:flex;justify-content:center;
+  position:relative;
+  z-index:3;
+}
+.member-card{
+  width:208px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:20px 16px 18px;
+  text-align:center;
+  box-shadow:var(--shadow-1);
+  transform-style:preserve-3d;
+  will-change:transform;
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease);
+}
+.member-card:hover{border-color:rgba(67,200,255,.4);}
+.avatar-frame{
+  width:108px;height:108px;
+  margin:0 auto 14px;
+  border-radius:50%;
+  padding:4px;
+  background:linear-gradient(135deg,var(--sky),var(--sky-deep));
+  cursor:pointer;
+  position:relative;
+}
+.avatar-frame img{
+  width:100%;height:100%;
+  border-radius:50%;
+  object-fit:cover;
+  background:var(--bg-2);
+  display:block;
+}
+.member-name-frame{
+  margin-top:4px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:9px 8px;
+  background:rgba(255,255,255,0.03);
+}
+.member-name-frame strong{
+  display:block;
+  font-size:14px;
+  font-weight:700;
+  line-height:1.45;
+  word-break:break-word;
+}
+.member-name-frame small{
+  display:block;
+  margin-top:3px;
+  font-size:11.5px;
+  color:var(--muted);
+}
+
+/* كارت القائدة */
+.member-card.is-leader{
+  width:248px;
+  padding:28px 20px 22px;
+  position:relative;
+  background:linear-gradient(160deg,rgba(236,203,120,0.10),var(--panel));
+  border:1px solid rgba(236,203,120,.55);
+  box-shadow:var(--shadow-gold);
+  animation:leaderPulse 3.6s ease-in-out infinite;
+}
+@keyframes leaderPulse{
+  0%,100%{box-shadow:0 0 0 1px rgba(236,203,120,0.5),0 20px 60px -18px rgba(236,203,120,0.45);}
+  50%{box-shadow:0 0 0 1px rgba(236,203,120,0.85),0 24px 70px -16px rgba(236,203,120,0.75);}
+}
+.member-card.is-leader:hover{
+  transform:translateY(-10px);
+  box-shadow:0 0 0 1px rgba(236,203,120,1),0 30px 80px -14px rgba(236,203,120,0.85);
+}
+.member-card.is-leader::before{
+  content:'';
+  position:absolute;inset:0;
+  border-radius:22px;
+  background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,0.35) 48%,transparent 65%);
+  background-size:220% 100%;
+  background-position:130% 0;
+  animation:shine 5.5s ease-in-out infinite;
+  pointer-events:none;
+  mix-blend-mode:overlay;
+}
+@keyframes shine{
+  0%,55%{background-position:160% 0;}
+  100%{background-position:-60% 0;}
+}
+.member-card.is-leader .avatar-frame{
+  width:128px;height:128px;
+  background:linear-gradient(135deg,var(--gold),var(--gold-deep));
+}
+.leader-star{
+  position:absolute;top:14px;left:14px;
+  width:26px;height:26px;
+  color:var(--gold);
+  filter:drop-shadow(0 0 6px rgba(236,203,120,.8));
+  animation:starSpin 4s linear infinite;
+  z-index:4;
+}
+@keyframes starSpin{
+  0%,80%{transform:rotate(0) scale(1);}
+  90%{transform:rotate(180deg) scale(1.2);}
+  100%{transform:rotate(360deg) scale(1);}
+}
+.leader-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11px;font-weight:700;
+  color:var(--gold);
+  background:rgba(236,203,120,0.12);
+  border:1px solid rgba(236,203,120,.4);
+  padding:4px 12px;
+  border-radius:20px;
+  margin-top:6px;
+}
+@media (prefers-reduced-motion:reduce){
+  .member-card.is-leader,.member-card.is-leader::before,.leader-star{animation:none;}
+}
+@media (max-width:560px){
+  .team-top{gap:20px;}
+  .member-card{width:150px;padding:16px 10px 14px;}
+  .member-card.is-leader{width:184px;}
+  .avatar-frame{width:84px;height:84px;}
+  .member-card.is-leader .avatar-frame{width:98px;height:98px;}
+}
+
+/* ===================================================================
+   9) قسم الموارد والملفات
+=================================================================== */
+.resources-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:22px;
+}
+@media (max-width:760px){.resources-grid{grid-template-columns:1fr;}}
+
+.resource-card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:var(--radius-md);
+  padding:22px;
+  display:flex;flex-direction:column;gap:14px;
+  transition:border-color .3s var(--ease),background .3s var(--ease);
+}
+.resource-card:hover{border-color:rgba(67,200,255,.3);background:var(--panel-strong);}
+.resource-head{display:flex;align-items:center;gap:14px;}
+.resource-head .ic{
+  width:46px;height:46px;border-radius:13px;flex:none;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(67,200,255,0.12);color:var(--sky);
+}
+.resource-head .ic svg{width:22px;height:22px;}
+.resource-head h3{font-size:16px;font-weight:700;}
+.resource-card p.desc{font-size:13.5px;color:var(--muted);}
+.resource-actions{display:flex;flex-wrap:wrap;gap:10px;}
+.btn-sm{
+  display:flex;align-items:center;gap:7px;
+  font-size:13px;font-weight:700;
+  padding:9px 15px;
+  border-radius:24px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,0.03);
+  transition:.22s var(--ease);
+}
+.btn-sm svg{width:14px;height:14px;}
+.btn-sm:hover{background:var(--panel-strong);transform:translateY(-2px);}
+.btn-sm.primary{
+  background:linear-gradient(120deg,var(--sky),var(--leaf));
+  color:#04131c;border-color:transparent;
+}
+.btn-sm.is-active{
+  border-color:rgba(236,203,120,.5);
+  color:var(--gold);
+}
+.btn-sm.is-disabled{
+  opacity:.45;
+  cursor:not-allowed;
+  pointer-events:none;
+}
+.preview-area{
+  position:relative;
+  border-radius:13px;
+  overflow:hidden;
+  border:1px dashed var(--border);
+  background:rgba(255,255,255,0.02);
+  min-height:170px;
+  display:flex;align-items:center;justify-content:center;
+}
+.preview-placeholder{
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  color:var(--muted);
+  font-size:13px;
+  padding:22px;
+  text-align:center;
+}
+.preview-placeholder svg{width:26px;height:26px;color:var(--sky);}
+.preview-area iframe{
+  width:100%;height:260px;border:0;display:block;
+}
+
+.resource-card.is-focused{
+  position:fixed;
+  inset:0;
+  margin:auto;
+  width:min(92vw,920px);
+  height:min(86vh,640px);
+  z-index:90;
+  overflow:auto;
+}
+.resource-card.is-focused .preview-area{min-height:340px;}
+.resource-card.is-focused .preview-area iframe{height:420px;}
+body.focus-mode-on::after{
+  content:'';
+  position:fixed;inset:0;
+  background:rgba(3,7,13,0.78);
+  backdrop-filter:blur(6px);
+  z-index:85;
+}
+
+/* عارض شرائح العرض التقديمي */
+.slide-viewer{
+  border-radius:13px;
+  overflow:hidden;
+  border:1px solid var(--border);
+  background:rgba(0,0,0,0.18);
+}
+.slide-stage{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#0a1018;
+  min-height:170px;
+}
+.slide-stage img{
+  width:100%;
+  display:block;
+  max-height:230px;
+  object-fit:contain;
+  background:#0a1018;
+}
+.slide-controls{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:8px 12px;
+  background:rgba(255,255,255,0.03);
+  border-top:1px solid var(--border-soft);
+}
+.slide-btn{
+  width:32px;height:32px;border-radius:9px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--panel);
+  border:1px solid var(--border);
+  flex:none;
+  transition:.2s var(--ease);
+}
+.slide-btn:hover{background:var(--panel-strong);}
+.slide-btn:disabled{opacity:.35;cursor:default;}
+.slide-btn svg{width:15px;height:15px;}
+.slide-counter{font-size:12.5px;color:var(--muted);font-weight:700;letter-spacing:.3px;direction:ltr;unicode-bidi:isolate;}
+.resource-card.is-focused .slide-stage img{max-height:58vh;}
+
+/* ===================================================================
+   10) المودال (صور الفريق)
+=================================================================== */
+.modal{
+  position:fixed;inset:0;
+  z-index:120;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(3,7,13,0.86);
+  backdrop-filter:blur(8px);
+  opacity:0;visibility:hidden;
+  transition:.25s var(--ease);
+  padding:30px;
+}
+.modal.open{opacity:1;visibility:visible;}
+.modal-box{
+  position:relative;
+  max-width:420px;
+  width:100%;
+  background:var(--bg-1);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:18px;
+  text-align:center;
+  transform:scale(.92);
+  transition:.28s var(--ease);
+}
+.modal.open .modal-box{transform:scale(1);}
+.modal-box img{
+  width:100%;border-radius:14px;
+  background:var(--bg-2);
+}
+.modal-box h3{margin-top:14px;font-size:16px;}
+.modal-box small{color:var(--muted);font-size:12.5px;}
+.modal-close{
+  position:absolute;top:-14px;left:-14px;
+  width:36px;height:36px;border-radius:50%;
+  background:var(--bg-1);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+}
+.modal-close svg{width:16px;height:16px;}
+
+/* ===================================================================
+   11) تذييل
+=================================================================== */
+footer{
+  border-top:1px solid var(--border-soft);
+  padding:34px 0 110px;
+  text-align:center;
+  color:var(--muted-2);
+  font-size:13px;
+}
+footer strong{color:var(--muted);}
+
+@media (max-width:640px){
+  .page-section{padding:110px 0 80px;}
+  .wrap{padding:0 18px;}
+}
+</style>
+</head>
+<body>
+
+<!-- خلفية الأورورا والجزيئات (ديكورية بحتة) -->
+<div class="bg-fixed" aria-hidden="true"></div>
+<div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+<canvas id="particles" aria-hidden="true"></canvas>
+
+<!-- ===================== الشريط العلوي ===================== -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand"><span class="dot"></span> مبادرة الوعي البيئي التربوي</div>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="#home">الرئيسية</a>
+      <a href="#green-university">الجامعة الخضراء</a>
+      <a href="#green-schools">المدارس الخضراء</a>
+      <a href="#whispers">همسات تربوية</a>
+      <a href="#indicators">مؤشرات بيئية</a>
+      <a href="#team">الفريق</a>
+      <a href="#resources">الموارد</a>
+    </nav>
+
+    <div class="top-actions">
+      <button class="icon-btn menu-toggle" id="menuToggle" aria-label="فتح القائمة">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+      <button class="icon-btn" id="fullscreenBtn" aria-label="ملء الشاشة" title="ملء الشاشة">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3m11 0h3a2 2 0 0 0 2-2v-3"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== التنقل بين الأقسام ===================== -->
+<div class="section-nav" aria-label="التنقل بين الأقسام">
+  <button id="navHome" title="الرجوع للبداية" aria-label="الرجوع للبداية">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v9a1 1 0 0 0 1 1h3v-6h6v6h3a1 1 0 0 0 1-1v-9"/></svg>
+  </button>
+  <div class="section-dots" id="sectionDots"></div>
+  <button id="navPrev" title="السابق" aria-label="القسم السابق">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+  </button>
+  <button id="navNext" title="التالي" aria-label="القسم التالي">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </button>
+</div>
+
+<main>
+
+  <!-- ===================== 1) قسم البداية ===================== -->
+  <section class="page-section" id="home" data-title="الرئيسية">
+    <div class="wrap hero-inner">
+      <div class="logo-row">
+        <div class="logo-chip"><img src="assets/logos/fgse_logo.png" alt="شعار كلية الدراسات العليا للتربية - جامعة القاهرة"></div>
+        <div class="logo-divider"></div>
+        <div class="logo-chip"><img src="assets/logos/initiative_logo.png" alt="شعار مبادرة وعي تربوي أخضر"></div>
+      </div>
+      <span class="eyebrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 4 13c0-4 5-9 7-11 2 2 7 7 7 11a7 7 0 0 1-7 7z"/></svg>
+        كلية الدراسات العليا للتربية – جامعة القاهرة
+      </span>
+
+      <h1>نحو <span class="accent">جامعة خضراء</span><br>وعقل تربوي مستدام</h1>
+
+      <p class="lead">
+        مبادرة تربوية بيئية تهدف إلى ترسيخ قيم الاستدامة داخل الحرم الجامعي والمدارس عبر القصة الرقمية
+        والمحتوى التوعوي، وربط الطالب بمسؤوليته تجاه بيئته بأسلوب عصري وقريب من وجدانه.
+      </p>
+
+      <div class="quick-actions">
+        <a class="primary" href="#home">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v9a1 1 0 0 0 1 1h3v-6h6v6h3a1 1 0 0 0 1-1v-9"/></svg>
+          الصفحة الرئيسية
+        </a>
+        <a href="#green-university">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg>
+          الجامعة الخضراء
+        </a>
+        <a href="#green-schools">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V9l8-5 8 5v12"/><path d="M9 21v-7h6v7"/></svg>
+          المدارس الخضراء
+        </a>
+        <a href="#whispers">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0-6 6c0 3 2 4 2 7h8c0-3 2-4 2-7a6 6 0 0 0-6-6z"/><path d="M9 20h6"/></svg>
+          همسات تربوية
+        </a>
+        <a href="#indicators">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16"/><path d="M7 19V9M12 19V5M17 19v-7"/></svg>
+          مؤشرات بيئية
+        </a>
+      </div>
+
+      <div class="scroll-cue">
+        <div class="mouse"><i></i></div>
+        مرر للأسفل لاستكشاف المبادرة
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 2) الجامعة الخضراء ===================== -->
+  <section class="page-section" id="green-university" data-title="الجامعة الخضراء">
+    <div class="wrap">
+      <div class="split">
+        <div class="copy reveal">
+          <span class="eyebrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/></svg>
+            مفهوم الاستدامة الجامعية
+          </span>
+          <h2 style="margin-top:14px;">الجامعة الخضراء.. بيئة تعلّم تحترم كوكبها</h2>
+          <p>
+            الجامعة الخضراء ليست مبنى صديقًا للبيئة فحسب، بل منظومة فكرية تُعيد تشكيل علاقة الطالب وعضو
+            هيئة التدريس بالموارد المحيطة، من ترشيد الطاقة والمياه إلى تبني مناهج ومشروعات بحثية تخدم
+            أهداف الاستدامة، بما يجعل الحرم الجامعي نموذجًا يُحتذى به مجتمعيًا.
+          </p>
+          <ul class="pill-list">
+            <li>
+              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg></span>
+              <span>ترشيد استهلاك الطاقة والاعتماد التدريجي على مصادر متجددة داخل المرافق الجامعية.</span>
+            </li>
+            <li>
+              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg></span>
+              <span>دمج قيم الاستدامة ضمن المقررات والأنشطة البحثية بمختلف الكليات.</span>
+            </li>
+            <li>
+              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 18 0 9 9 0 1 0-18 0z"/><path d="M3 12h18"/></svg></span>
+              <span>توسيع المساحات الخضراء وتشجيع الحركة المشتركة بدلًا من المركبات الفردية.</span>
+            </li>
+          </ul>
+        </div>
+        <div class="visual-card video-card reveal">
+          <video
+            class="gu-video"
+            poster="assets/video/poster.jpg"
+            preload="none"
+            controls
+            playsinline
+            title="فيديو الجامعة الخضراء">
+            <source src="assets/video/green_university.mp4" type="video/mp4">
+            متصفحك لا يدعم تشغيل الفيديو مباشرة، يمكنك <a href="assets/video/green_university.mp4">تحميل الفيديو</a> بدلًا من ذلك.
+          </video>
+          <p class="video-caption">من فعاليات المبادرة الوطنية للمشروعات الخضراء الذكية بجامعة القاهرة</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 3) المدارس الخضراء ===================== -->
+  <section class="page-section" id="green-schools" data-title="المدارس الخضراء">
+    <div class="wrap">
+      <div class="split" style="grid-template-columns:.9fr 1.1fr;">
+        <div class="visual-card reveal" style="order:2;">
+          <div class="glow" style="background:radial-gradient(circle,rgba(63,219,160,.35),transparent 70%);"></div>
+          <div class="big-ic" style="background:rgba(63,219,160,0.10);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V9l8-5 8 5v12"/><path d="M9 21v-7h6v7"/></svg>
+          </div>
+          <h3 style="font-size:17px;">من الفصل إلى الحديقة</h3>
+          <p style="color:var(--muted);font-size:13.5px;">التعلّم البيئي يبدأ من أبسط مساحة خضراء داخل المدرسة.</p>
+        </div>
+        <div class="copy reveal" style="order:1;">
+          <span class="eyebrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V9l8-5 8 5v12"/></svg>
+            امتداد الوعي إلى المراحل المبكرة
+          </span>
+          <h2 style="margin-top:14px;">المدارس الخضراء.. غرس القيمة قبل المعلومة</h2>
+          <p>
+            تمتد فلسفة الجامعة الخضراء إلى المدارس عبر برامج توعوية وأندية بيئية تُمكّن الطلاب من
+            ممارسة الاستدامة عمليًا، فالقيمة البيئية حين تُغرس في الطفولة تتحول إلى سلوك يومي راسخ
+            يرافق الطالب حتى مراحل التعليم العالي.
+          </p>
+          <ul class="pill-list">
+            <li>
+              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/></svg></span>
+              <span>أندية بيئية طلابية لإعادة التدوير وزراعة المساحات الصفية.</span>
+            </li>
+            <li>
+              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+              <span>قصص وأنشطة تفاعلية تربط المنهج الدراسي بقضايا البيئة المحلية.</span>
+            </li>
+            <li>
+              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></span>
+              <span>مسابقات تحفيزية تُكرّم أفكار الطلاب في الترشيد والاستدامة.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 4) همسات تربوية ===================== -->
+  <section class="page-section" id="whispers" data-title="همسات تربوية">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <span class="eyebrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0-6 6c0 3 2 4 2 7h8c0-3 2-4 2-7a6 6 0 0 0-6-6z"/></svg>
+          همسات تربوية خضراء
+        </span>
+        <h2>كلمات قصيرة.. تترك أثرًا طويلًا</h2>
+        <p>أربع همسات فيديو قصيرة موجّهة للطلاب والمعلمين، تُذكّر بأن الوعي البيئي قيمة تربوية قبل أن يكون سلوكًا.</p>
+      </div>
+
+      <div class="resources-grid whisper-video-grid">
+
+        <article class="resource-card reveal">
+          <div class="resource-head">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></span>
+            <h3>الهمسة الأولى</h3>
+          </div>
+          <p class="desc">الأرض لا تحتاج معلّمًا يشرح عنها، بل تلميذًا يحترمها في تصرفاته اليومية.</p>
+          <div class="resource-actions">
+            <a class="btn-sm primary" href="https://www.youtube.com/watch?v=fow78XmHVxo" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M5 21h14a1 1 0 0 0 1-1V8l-5-5H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1z"/></svg>
+              فتح على يوتيوب
+            </a>
+            <button class="btn-sm focus-btn" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3m11 0h3a2 2 0 0 0 2-2v-3"/></svg>
+              تركيز العرض
+            </button>
+          </div>
+          <!-- فيديو حقيقي ومؤكد -->
+          <div class="preview-area" data-src="https://www.youtube.com/embed/fow78XmHVxo">
+            <div class="preview-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-14 9V3z"/></svg>
+              <span>المعاينة غير محمّلة الآن</span>
+              <button class="btn-sm load-preview-btn" type="button">تحميل المعاينة</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="resource-card reveal">
+          <div class="resource-head">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></span>
+            <h3>الهمسة الثانية</h3>
+          </div>
+          <p class="desc">أصغر سلوك بيئي في الفصل، قد يكون أكبر درس يتذكره الطالب طوال حياته.</p>
+          <div class="resource-actions">
+            <!-- TODO: ضعي رابط فيديو الهمسة الثانية من قائمة تشغيل القناة هنا -->
+            <span class="btn-sm is-disabled">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M5 21h14a1 1 0 0 0 1-1V8l-5-5H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1z"/></svg>
+              فتح على يوتيوب
+            </span>
+            <button class="btn-sm focus-btn" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3m11 0h3a2 2 0 0 0 2-2v-3"/></svg>
+              تركيز العرض
+            </button>
+          </div>
+          <div class="preview-area" data-src="">
+            <div class="preview-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-14 9V3z"/></svg>
+              <span>سيتم إضافة الفيديو قريبًا</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="resource-card reveal">
+          <div class="resource-head">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></span>
+            <h3>الهمسة الثالثة</h3>
+          </div>
+          <p class="desc">الجامعة الخضراء تبدأ من معلّم يؤمن بالاستدامة قبل أن يُدرّسها.</p>
+          <div class="resource-actions">
+            <!-- TODO: ضعي رابط فيديو الهمسة الثالثة من قائمة تشغيل القناة هنا -->
+            <span class="btn-sm is-disabled">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M5 21h14a1 1 0 0 0 1-1V8l-5-5H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1z"/></svg>
+              فتح على يوتيوب
+            </span>
+            <button class="btn-sm focus-btn" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3m11 0h3a2 2 0 0 0 2-2v-3"/></svg>
+              تركيز العرض
+            </button>
+          </div>
+          <div class="preview-area" data-src="">
+            <div class="preview-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-14 9V3z"/></svg>
+              <span>سيتم إضافة الفيديو قريبًا</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="resource-card reveal">
+          <div class="resource-head">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></span>
+            <h3>الهمسة الرابعة</h3>
+          </div>
+          <p class="desc">كل همسة تربوية خضراء بذرة وعي تكبر مع الطالب يومًا بعد يوم.</p>
+          <div class="resource-actions">
+            <!-- TODO: ضعي رابط فيديو الهمسة الرابعة من قائمة تشغيل القناة هنا -->
+            <span class="btn-sm is-disabled">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M5 21h14a1 1 0 0 0 1-1V8l-5-5H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1z"/></svg>
+              فتح على يوتيوب
+            </span>
+            <button class="btn-sm focus-btn" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3m11 0h3a2 2 0 0 0 2-2v-3"/></svg>
+              تركيز العرض
+            </button>
+          </div>
+          <div class="preview-area" data-src="">
+            <div class="preview-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-14 9V3z"/></svg>
+              <span>سيتم إضافة الفيديو قريبًا</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 5) مؤشرات بيئية ===================== -->
+  <section class="page-section" id="indicators" data-title="مؤشرات بيئية">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <span class="eyebrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16"/><path d="M7 19V9M12 19V5M17 19v-7"/></svg>
+          مؤشرات بيئية
+        </span>
+        <h2>أهداف المبادرة على الأرض</h2>
+        <p>محاور رئيسية توجّه عمل المبادرة وتقيس أثرها داخل البيئة الجامعية والمدرسية.</p>
+      </div>
+
+      <div class="indicators-grid">
+        <div class="indicator-card reveal">
+          <div class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg></div>
+          <h3>ترشيد الطاقة</h3>
+          <p>تقليل الاستهلاك غير الضروري للكهرباء بالمرافق التعليمية.</p>
+        </div>
+        <div class="indicator-card reveal">
+          <div class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h10M4 17h13"/></svg></div>
+          <h3>خفض استخدام الورق</h3>
+          <p>التحول التدريجي نحو المحتوى والتقييم الرقمي.</p>
+        </div>
+        <div class="indicator-card reveal">
+          <div class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V9"/><path d="M12 9c0-4 3-7 7-7 0 4-3 7-7 7z"/><path d="M12 9C12 5 9 2 5 2c0 4 3 7 7 7z"/></svg></div>
+          <h3>زيادة المساحات الخضراء</h3>
+          <p>دعم مبادرات الزراعة داخل الحرم الجامعي والمدارس.</p>
+        </div>
+        <div class="indicator-card reveal">
+          <div class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/></svg></div>
+          <h3>نشر الوعي البيئي</h3>
+          <p>محتوى توعوي مستمر يصل إلى الطلاب والمعلمين.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 6) فريق المبادرة ===================== -->
+  <section class="page-section" id="team" data-title="فريق المبادرة">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <span class="eyebrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M5 21v-2a7 7 0 0 1 14 0v2"/></svg>
+          القائمون على المبادرة
+        </span>
+        <h2>أعضاء فريق المبادرة</h2>
+        <p>فريق أكاديمي يجمع بين الخبرة البحثية وحب الفكرة، يعمل على تحويل الوعي البيئي إلى تجربة تربوية حقيقية.</p>
+      </div>
+
+      <!-- الصفان العلويان: أعلى اليسار / أعلى اليمين -->
+      <div class="team-top">
+        <article class="member-card reveal tilt" data-member="amira">
+          <div class="avatar-frame" data-modal-trigger>
+            <img id="avatarAmira" src="assets/team/amira.jpg" alt="صورة أ. أميرة عزب">
+          </div>
+          <div class="member-name-frame">
+            <strong>أ. أميرة عزب</strong>
+            <small>عضو فريق المبادرة</small>
+          </div>
+        </article>
+
+        <article class="member-card reveal tilt" data-member="noha">
+          <div class="avatar-frame" data-modal-trigger>
+            <img id="avatarNoha" src="assets/team/noha.jpg" alt="صورة د/ نهى محمود أحمد">
+          </div>
+          <div class="member-name-frame">
+            <strong>د/ نهى محمود أحمد</strong>
+            <small>عضو فريق المبادرة</small>
+          </div>
+        </article>
+      </div>
+
+      <!-- صف القائدة في المنتصف -->
+      <div class="team-leader-row">
+        <article class="member-card is-leader reveal tilt" data-member="eman">
+          <svg class="leader-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.8L5.7 21l1.7-7L2 9.2l7.1-.6z"/></svg>
+          <div class="avatar-frame" data-modal-trigger>
+            <img id="avatarEman" src="assets/team/eman.jpg" alt="صورة أ.د/ إيمان أحمد هريدي">
+          </div>
+          <div class="member-name-frame">
+            <strong>أ.د/ إيمان أحمد هريدي</strong>
+            <small>عميدة الكلية – قائدة المبادرة</small>
+          </div>
+          <span class="leader-badge">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="11" height="11"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.8L5.7 21l1.7-7L2 9.2l7.1-.6z"/></svg>
+            قائدة الفريق
+          </span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 7) الموارد والملفات ===================== -->
+  <section class="page-section" id="resources" data-title="الموارد والملفات">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          مكتبة المبادرة
+        </span>
+        <h2>الموارد والملفات</h2>
+        <p>جميع ملفات المبادرة في مكان واحد. المعاينات تُحمَّل عند الطلب فقط للحفاظ على سرعة الصفحة.</p>
+      </div>
+
+      <div class="resources-grid">
+
+        <!-- العرض التقديمي: عارض شرائح حقيقي داخل الصفحة -->
+        <article class="resource-card reveal">
+          <div class="resource-head">
+            <span class="ic">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </span>
+            <h3>العرض التقديمي</h3>
+          </div>
+          <p class="desc">عرض تقديمي من 14 شريحة يشرح فكرة المبادرة ومحاورها الرئيسية.</p>
+          <div class="resource-actions">
+            <a class="btn-sm primary" href="assets/slides/presentation.pptx" download>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M5 21h14a1 1 0 0 0 1-1V8l-5-5H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1z"/></svg>
+              تنزيل الملف
+            </a>
+            <button class="btn-sm focus-btn" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3m11 0h3a2 2 0 0 0 2-2v-3"/></svg>
+              تركيز العرض
+            </button>
+          </div>
+          <div class="slide-viewer" data-total="14">
+            <div class="slide-stage">
+              <img class="slide-img" src="assets/slides/slide-01.jpg" alt="شريحة 1 من العرض التقديمي">
+            </div>
+            <div class="slide-controls">
+              <button class="slide-btn slide-prev" type="button" aria-label="الشريحة السابقة">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <span class="slide-counter"><b class="slide-current">1</b> / <span class="slide-total">14</span></span>
+              <button class="slide-btn slide-next" type="button" aria-label="الشريحة التالية">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- دليل المعلم -->
+        <article class="resource-card reveal">
+          <div class="resource-head">
+            <span class="ic">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M5 21h14a1 1 0 0 0 1-1V8l-5-5H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1z"/><path d="M9 13h6M9 17h6"/></svg>
+            </span>
+            <h3>دليل المعلم</h3>
+          </div>
+          <p class="desc">دليل إرشادي للمعلم لتطبيق أنشطة المبادرة وهمساتها التربوية داخل الفصل.</p>
+          <div class="resource-actions">
+            <a class="btn-sm primary" href="https://drive.google.com/file/d/10qHKyWrARLWl0wrpqXvbj2WnjDIiDmCY/view?usp=drive_link" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M5 21h14a1 1 0 0 0 1-1V8l-5-5H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1z"/></svg>
+              فتح الملف
+            </a>
+            <button class="btn-sm focus-btn" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3m11 0h3a2 2 0 0 0 2-2v-3"/></svg>
+              تركيز العرض
+            </button>
+          </div>
+          <div class="preview-area" data-src="https://drive.google.com/file/d/10qHKyWrARLWl0wrpqXvbj2WnjDIiDmCY/preview">
+            <div class="preview-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-14 9V3z"/></svg>
+              <span>المعاينة غير محمّلة الآن</span>
+              <button class="btn-sm load-preview-btn" type="button">تحميل المعاينة</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- دراسات سابقة -->
+        <article class="resource-card reveal">
+          <div class="resource-head">
+            <span class="ic">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            </span>
+            <h3>دراسات سابقة</h3>
+          </div>
+          <p class="desc">عرض موجز لأهم الدراسات العربية والدولية حول المشروعات الخضراء الذكية والجامعات المستدامة.</p>
+          <div class="resource-actions">
+            <a class="btn-sm primary" href="assets/docs/previous_studies.pdf" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M5 21h14a1 1 0 0 0 1-1V8l-5-5H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1z"/></svg>
+              فتح الملف
+            </a>
+            <button class="btn-sm focus-btn" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3m11 0h3a2 2 0 0 0 2-2v-3"/></svg>
+              تركيز العرض
+            </button>
+          </div>
+          <div class="preview-area" data-src="assets/docs/previous_studies.pdf">
+            <div class="preview-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-14 9V3z"/></svg>
+              <span>المعاينة غير محمّلة الآن</span>
+              <button class="btn-sm load-preview-btn" type="button">تحميل المعاينة</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- إنفوجرافيك -->
+        <article class="resource-card reveal">
+          <div class="resource-head">
+            <span class="ic">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16"/><path d="M7 19V9M12 19V5M17 19v-7"/></svg>
+            </span>
+            <h3>إنفوجرافيك</h3>
+          </div>
+          <p class="desc">تصميم بصري يلخّص أهم أرقام وأهداف المبادرة في نظرة واحدة.</p>
+          <div class="resource-actions">
+            <!-- TODO: أضيفي ملف الإنفوجرافيك إلى assets/docs ثم فعّلي هذا الرابط -->
+            <span class="btn-sm is-disabled">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M5 21h14a1 1 0 0 0 1-1V8l-5-5H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1z"/></svg>
+              فتح الملف
+            </span>
+            <button class="btn-sm focus-btn" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3m11 0h3a2 2 0 0 0 2-2v-3"/></svg>
+              تركيز العرض
+            </button>
+          </div>
+          <div class="preview-area" data-src="">
+            <div class="preview-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-14 9V3z"/></svg>
+              <span>سيتم إضافة هذا الملف قريبًا</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <strong>مبادرة الوعي البيئي التربوي</strong> — نحو جامعة خضراء ومجتمع تعليمي مستدام · {{YEAR}}
+  </div>
+</footer>
+
+<!-- ===================== المودال ===================== -->
+<div class="modal" id="imgModal" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <button class="modal-close" id="modalCloseBtn" aria-label="إغلاق">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <img id="modalImg" alt="">
+    <h3 id="modalName"></h3>
+    <small id="modalRole"></small>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* =========================================================
+     0) السنة في التذييل
+  ========================================================= */
+  document.querySelector('footer .wrap').innerHTML =
+    document.querySelector('footer .wrap').innerHTML.replace('{{YEAR}}', new Date().getFullYear());
+
+  /* =========================================================
+     1) صور الأعضاء الحقيقية (مع احتياط تلقائي بصورة رمزية
+     في حال تعذّر تحميل أي صورة من المسار الفعلي)
+  ========================================================= */
+  function avatarSVG(colorA, colorB){
+    var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">'
+      + '<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">'
+      + '<stop offset="0" stop-color="'+colorA+'"/><stop offset="1" stop-color="'+colorB+'"/>'
+      + '</linearGradient></defs>'
+      + '<rect width="200" height="200" fill="url(#g)"/>'
+      + '<circle cx="100" cy="76" r="32" fill="rgba(255,255,255,0.92)"/>'
+      + '<path d="M38 176c5-46 36-68 62-68s57 22 62 68z" fill="rgba(255,255,255,0.92)"/>'
+      + '</svg>';
+    return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+  }
+  var avatarFallback = {
+    amira: document.getElementById('avatarAmira'),
+    noha: document.getElementById('avatarNoha'),
+    eman: document.getElementById('avatarEman')
+  };
+  if(avatarFallback.amira) avatarFallback.amira.addEventListener('error', function(){ this.src = avatarSVG('#43c8ff','#1f8fd8'); });
+  if(avatarFallback.noha)  avatarFallback.noha.addEventListener('error', function(){ this.src = avatarSVG('#3fdba0','#1f8fd8'); });
+  if(avatarFallback.eman)  avatarFallback.eman.addEventListener('error', function(){ this.src = avatarSVG('#eccb78','#caa23c'); });
+
+  /* =========================================================
+     2) القائمة العلوية على الموبايل
+  ========================================================= */
+  var menuToggle = document.getElementById('menuToggle');
+  var navLinks = document.getElementById('navLinks');
+  if(menuToggle){
+    menuToggle.addEventListener('click', function(){
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){ navLinks.classList.remove('open'); });
+    });
+  }
+
+  /* =========================================================
+     3) زر ملء الشاشة
+  ========================================================= */
+  var fsBtn = document.getElementById('fullscreenBtn');
+  if(fsBtn){
+    fsBtn.addEventListener('click', function(){
+      try{
+        if(!document.fullscreenElement){
+          var p = document.documentElement.requestFullscreen();
+          if(p && p.catch) p.catch(function(){});
+        }else{
+          var p2 = document.exitFullscreen();
+          if(p2 && p2.catch) p2.catch(function(){});
+        }
+      }catch(e){ /* تجاهل بيئات لا تدعم ملء الشاشة */ }
+    });
+  }
+
+  /* =========================================================
+     4) Scroll Reveal
+  ========================================================= */
+  var revealEls = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          en.target.classList.add('in-view');
+          io.unobserve(en.target);
+        }
+      });
+    }, {threshold:0.15, rootMargin:'0px 0px -40px 0px'});
+    revealEls.forEach(function(el){ io.observe(el); });
+  }else{
+    revealEls.forEach(function(el){ el.classList.add('in-view'); });
+  }
+
+  /* =========================================================
+     5) تأثير Tilt للكروت
+  ========================================================= */
+  if(!reduceMotion){
+    document.querySelectorAll('.tilt, .feature-card').forEach(function(card){
+      card.addEventListener('mousemove', function(e){
+        var r = card.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width - 0.5;
+        var y = (e.clientY - r.top) / r.height - 0.5;
+        card.style.transform = 'rotateY('+(x*9)+'deg) rotateX('+(y*-9)+'deg) translateY(-4px)';
+      });
+      card.addEventListener('mouseleave', function(){
+        card.style.transform = '';
+      });
+    });
+  }
+
+  /* =========================================================
+     6) المودال: عرض صور الفريق مكبّرة
+  ========================================================= */
+  var modal = document.getElementById('imgModal');
+  var modalImg = document.getElementById('modalImg');
+  var modalName = document.getElementById('modalName');
+  var modalRole = document.getElementById('modalRole');
+
+  function openModal(img, name, role){
+    modalImg.src = img.src;
+    modalImg.alt = img.alt;
+    modalName.textContent = name;
+    modalRole.textContent = role;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(){
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll('[data-modal-trigger]').forEach(function(frame){
+    frame.addEventListener('click', function(){
+      var card = frame.closest('.member-card');
+      var img = frame.querySelector('img');
+      var name = card.querySelector('.member-name-frame strong').textContent;
+      var role = card.querySelector('.member-name-frame small').textContent;
+      openModal(img, name, role);
+    });
+  });
+  document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
+  modal.addEventListener('click', function(e){
+    if(e.target === modal) closeModal();
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+  });
+
+  /* =========================================================
+     7) قسم الموارد: تحميل المعاينة (Lazy iframe) + تركيز العرض
+  ========================================================= */
+  document.querySelectorAll('.load-preview-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var area = btn.closest('.preview-area');
+      var src = area.getAttribute('data-src');
+      if(!src){
+        area.innerHTML = '<div class="preview-placeholder"><span>سيتم إضافة هذا المحتوى قريبًا</span></div>';
+        return;
+      }
+      var iframe = document.createElement('iframe');
+      iframe.src = src;
+      iframe.loading = 'lazy';
+      iframe.setAttribute('allow','autoplay; fullscreen; clipboard-read; clipboard-write');
+      iframe.title = 'معاينة الملف';
+      area.innerHTML = '';
+      area.appendChild(iframe);
+    });
+  });
+
+  document.querySelectorAll('.focus-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var card = btn.closest('.resource-card');
+      var isFocused = card.classList.toggle('is-focused');
+      document.body.classList.toggle('focus-mode-on', isFocused);
+      btn.classList.toggle('is-active', isFocused);
+    });
+  });
+  document.body.addEventListener('click', function(e){
+    if(document.body.classList.contains('focus-mode-on') && e.target === document.body){
+      // النقر على الخلفية المعتمة فقط (وليس داخل الكارت)
+    }
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){
+      var focused = document.querySelector('.resource-card.is-focused');
+      if(focused){
+        focused.classList.remove('is-focused');
+        document.body.classList.remove('focus-mode-on');
+        var b = focused.querySelector('.focus-btn');
+        if(b) b.classList.remove('is-active');
+      }
+    }
+  });
+
+  /* =========================================================
+     7.1) عارض شرائح العرض التقديمي
+  ========================================================= */
+  document.querySelectorAll('.slide-viewer').forEach(function(viewer){
+    var total = parseInt(viewer.getAttribute('data-total'), 10) || 1;
+    var current = 1;
+    var img = viewer.querySelector('.slide-img');
+    var currentLabel = viewer.querySelector('.slide-current');
+    var prevBtn = viewer.querySelector('.slide-prev');
+    var nextBtn = viewer.querySelector('.slide-next');
+
+    function renderSlide(){
+      var num = String(current).padStart(2, '0');
+      img.src = 'assets/slides/slide-' + num + '.jpg';
+      img.alt = 'شريحة ' + current + ' من العرض التقديمي';
+      currentLabel.textContent = current;
+      prevBtn.disabled = current === 1;
+      nextBtn.disabled = current === total;
+    }
+    prevBtn.addEventListener('click', function(){
+      if(current > 1){ current--; renderSlide(); }
+    });
+    nextBtn.addEventListener('click', function(){
+      if(current < total){ current++; renderSlide(); }
+    });
+    renderSlide();
+  });
+
+  /* =========================================================
+     8) التنقل بين الأقسام (تالي / سابق / الرجوع للبداية)
+  ========================================================= */
+  var sections = Array.prototype.slice.call(document.querySelectorAll('.page-section'));
+  var dotsWrap = document.getElementById('sectionDots');
+  var dots = sections.map(function(){
+    var i = document.createElement('i');
+    dotsWrap.appendChild(i);
+    return i;
+  });
+  var currentIndex = 0;
+
+  function setActive(idx){
+    currentIndex = idx;
+    dots.forEach(function(d,i){ d.classList.toggle('active', i===idx); });
+    document.querySelectorAll('.nav-links a').forEach(function(a){
+      a.classList.toggle('active', a.getAttribute('href') === '#'+sections[idx].id);
+    });
+    document.getElementById('navPrev').disabled = idx === 0;
+    document.getElementById('navNext').disabled = idx === sections.length - 1;
+  }
+
+  if('IntersectionObserver' in window){
+    var navIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting && en.intersectionRatio > 0.5){
+          var idx = sections.indexOf(en.target);
+          if(idx > -1) setActive(idx);
+        }
+      });
+    }, {threshold:[0.5]});
+    sections.forEach(function(s){ navIO.observe(s); });
+  }
+
+  document.getElementById('navNext').addEventListener('click', function(){
+    if(currentIndex < sections.length - 1){
+      sections[currentIndex+1].scrollIntoView({behavior:'smooth'});
+    }
+  });
+  document.getElementById('navPrev').addEventListener('click', function(){
+    if(currentIndex > 0){
+      sections[currentIndex-1].scrollIntoView({behavior:'smooth'});
+    }
+  });
+  document.getElementById('navHome').addEventListener('click', function(){
+    sections[0].scrollIntoView({behavior:'smooth'});
+  });
+
+  setActive(0);
+
+  /* =========================================================
+     9) خلفية الجزيئات (أوراق متوهّجة خفيفة الأداء)
+  ========================================================= */
+  var canvas = document.getElementById('particles');
+  var ctx = canvas.getContext('2d');
+  var particles = [];
+  var rafId = null;
+  var DPR = Math.min(window.devicePixelRatio || 1, 2);
+
+  function resize(){
+    canvas.width = window.innerWidth * DPR;
+    canvas.height = window.innerHeight * DPR;
+    canvas.style.width = window.innerWidth + 'px';
+    canvas.style.height = window.innerHeight + 'px';
+  }
+  function makeParticles(){
+    var count = window.innerWidth < 700 ? 14 : 24;
+    particles = [];
+    for(var i=0;i<count;i++){
+      particles.push({
+        x: Math.random()*window.innerWidth,
+        y: Math.random()*window.innerHeight,
+        r: 1.4 + Math.random()*2.2,
+        speed: 0.18 + Math.random()*0.35,
+        sway: Math.random()*Math.PI*2,
+        swaySpeed: 0.004 + Math.random()*0.006,
+        hue: Math.random() > 0.5 ? '67,200,255' : (Math.random() > 0.5 ? '63,219,160' : '236,203,120'),
+        alpha: 0.25 + Math.random()*0.35
+      });
+    }
+  }
+  function tick(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(function(p){
+      p.y -= p.speed;
+      p.sway += p.swaySpeed;
+      if(p.y < -10){ p.y = window.innerHeight + 10; p.x = Math.random()*window.innerWidth; }
+      var px = (p.x + Math.sin(p.sway)*18) * DPR;
+      var py = p.y * DPR;
+      var grad = ctx.createRadialGradient(px,py,0,px,py,p.r*DPR*4);
+      grad.addColorStop(0,'rgba('+p.hue+','+p.alpha+')');
+      grad.addColorStop(1,'rgba('+p.hue+',0)');
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.arc(px,py,p.r*DPR*4,0,Math.PI*2);
+      ctx.fill();
+    });
+    rafId = requestAnimationFrame(tick);
+  }
+  function startLoop(){
+    if(rafId) return;
+    rafId = requestAnimationFrame(tick);
+  }
+  function stopLoop(){
+    if(rafId){ cancelAnimationFrame(rafId); rafId = null; }
+  }
+
+  resize();
+  makeParticles();
+  if(!reduceMotion){ startLoop(); }
+
+  window.addEventListener('resize', function(){
+    resize();
+    makeParticles();
+  });
+  document.addEventListener('visibilitychange', function(){
+    if(document.hidden){ stopLoop(); }
+    else if(!reduceMotion){ startLoop(); }
+  });
+
+})();
+</script>
+</body>
+</html>
