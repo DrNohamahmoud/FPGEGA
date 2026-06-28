@@ -230,7 +230,7 @@ h1,h2,h3,p{margin:0;}
     box-shadow:var(--shadow-1);
     transform:translateY(-12px) scale(.98);
     opacity:0;
-    visibility:visible;
+    visibility:hidden;
     transition:.25s var(--ease);
   }
   .nav-links.open{transform:none;opacity:1;visibility:visible;}
@@ -478,7 +478,7 @@ h1,h2,h3,p{margin:0;}
   display:flex;flex-direction:column;justify-content:center;align-items:center;
   gap:14px;
   text-align:center;
-  overflow:visible;
+  overflow:hidden;
 }
 .visual-card .big-ic{
   width:78px;height:78px;border-radius:50%;
@@ -735,7 +735,7 @@ h1,h2,h3,p{margin:0;}
 .preview-area{
   position:relative;
   border-radius:13px;
-  overflow:visible;
+  overflow:hidden;
   border:1px dashed var(--border);
   background:rgba(255,255,255,0.02);
   min-height:170px;
@@ -826,7 +826,7 @@ body.focus-mode-on::after{
   display:flex;align-items:center;justify-content:center;
   background:rgba(3,7,13,0.86);
   backdrop-filter:blur(8px);
-  opacity:0;visibility:visible;
+  opacity:0;visibility:hidden;
   transition:.25s var(--ease);
   padding:30px;
 }
@@ -879,9 +879,9 @@ footer strong{color:var(--muted);}
 <body>
 
 <!-- خلفية الأورورا والجزيئات (ديكورية بحتة) -->
-<div class="bg-fixed" aria-visible="true"></div>
-<div class="aurora" aria-visible="true"><span></span><span></span><span></span></div>
-<canvas id="particles" aria-visible="true"></canvas>
+<div class="bg-fixed" aria-hidden="true"></div>
+<div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+<canvas id="particles" aria-hidden="true"></canvas>
 
 <!-- ===================== الشريط العلوي ===================== -->
 <header class="topbar">
@@ -1234,7 +1234,7 @@ footer strong{color:var(--muted);}
 
       <!-- الصفان العلويان: أعلى اليسار / أعلى اليمين -->
       <div class="team-top">
-        <article class="member-card " data-member="amira">
+        <article class="member-card reveal tilt" data-member="amira">
           <div class="avatar-frame" data-modal-trigger>
             <img id="avatarAmira" src="assets/team/amira.jpg" alt="صورة أ. أميرة سعيد عزب">
           </div>
@@ -1244,7 +1244,7 @@ footer strong{color:var(--muted);}
           </div>
         </article>
 
-        <article class="member-card " data-member="noha">
+        <article class="member-card reveal tilt" data-member="noha">
           <div class="avatar-frame" data-modal-trigger>
             <img id="avatarNoha" src="assets/team/noha.jpg" alt="صورة د/ نهى محمود أحمد">
           </div>
@@ -1257,7 +1257,7 @@ footer strong{color:var(--muted);}
 
       <!-- صف القائدة في المنتصف -->
       <div class="team-leader-row">
-        <article class="member-card is-leader " data-member="eman">
+        <article class="member-card is-leader reveal tilt" data-member="eman">
           <svg class="leader-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.8L5.7 21l1.7-7L2 9.2l7.1-.6z"/></svg>
           <div class="avatar-frame" data-modal-trigger>
             <img id="avatarEman" src="assets/team/eman.jpg" alt="صورة أ.د/ إيمان أحمد هريدي">
@@ -1548,7 +1548,7 @@ footer strong{color:var(--muted);}
     modalName.textContent = name;
     modalRole.textContent = role;
     modal.classList.add('open');
-    document.body.style.overflow = 'visible';
+    document.body.style.overflow = 'hidden';
   }
   function closeModal(){
     modal.classList.remove('open');
