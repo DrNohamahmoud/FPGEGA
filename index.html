@@ -540,6 +540,44 @@ h1,h2,h3,p{margin:0;}
 .indicator-card h3{font-size:14px;font-weight:700;}
 .indicator-card p{font-size:12.5px;color:var(--muted-2);}
 
+/* مؤشرات بيئية - بطاقات إحصائية بالأرقام الفعلية */
+.stat-grid{align-items:stretch;}
+.indicator-card.stat-card{
+  gap:6px;
+  padding:26px 20px 22px;
+  transition:transform .3s var(--ease), border-color .3s var(--ease);
+}
+.indicator-card.stat-card:hover{transform:translateY(-4px);border-color:rgba(67,200,255,.35);}
+.stat-number{
+  font-size:38px;
+  font-weight:800;
+  line-height:1.1;
+  direction:ltr;
+  unicode-bidi:isolate;
+  background:linear-gradient(95deg,var(--sky),var(--leaf));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+.indicator-card.stat-card h3{font-size:14.5px;margin-top:2px;}
+.indicator-card.stat-card p{font-size:12.5px;line-height:1.6;}
+.indicators-banner{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-top:18px;
+  padding:18px 22px;
+  border-radius:16px;
+  background:linear-gradient(120deg,rgba(63,219,160,0.12),rgba(67,200,255,0.08));
+  border:1px solid rgba(63,219,160,0.3);
+}
+.indicators-banner svg{width:26px;height:26px;color:var(--leaf);flex:none;}
+.indicators-banner p{font-size:14px;color:var(--ink);font-weight:600;}
+@media (max-width:560px){
+  .indicators-banner{flex-direction:column;text-align:center;}
+  .stat-number{font-size:32px;}
+}
+
 /* ===================================================================
    8) فريق المبادرة
 =================================================================== */
@@ -887,14 +925,14 @@ footer strong{color:var(--muted);}
 <!-- ===================== الشريط العلوي ===================== -->
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span class="dot"></span> مبادرة الوعي البيئي التربوي</div>
+    <div class="brand"><span class="dot"></span> نحو وعي تربوي أخضر</div>
 
     <nav class="nav-links" id="navLinks">
       <a href="#home">الرئيسية</a>
+      <a href="#indicators">مؤشرات بيئية</a>
       <a href="#green-university">الجامعة الخضراء</a>
       <a href="#green-schools">المدارس الخضراء</a>
       <a href="#whispers">همسات تربوية</a>
-      <a href="#indicators">مؤشرات بيئية</a>
       <a href="#team">الفريق</a>
       <a href="#resources">الموارد</a>
     </nav>
@@ -951,6 +989,10 @@ footer strong{color:var(--muted);}
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v9a1 1 0 0 0 1 1h3v-6h6v6h3a1 1 0 0 0 1-1v-9"/></svg>
           الصفحة الرئيسية
         </a>
+        <a href="#indicators">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16"/><path d="M7 19V9M12 19V5M17 19v-7"/></svg>
+          مؤشرات بيئية
+        </a>
         <a href="#green-university">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg>
           الجامعة الخضراء
@@ -963,10 +1005,6 @@ footer strong{color:var(--muted);}
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0-6 6c0 3 2 4 2 7h8c0-3 2-4 2-7a6 6 0 0 0-6-6z"/><path d="M9 20h6"/></svg>
           همسات تربوية
         </a>
-        <a href="#indicators">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16"/><path d="M7 19V9M12 19V5M17 19v-7"/></svg>
-          مؤشرات بيئية
-        </a>
       </div>
 
       <div class="scroll-cue">
@@ -976,7 +1014,49 @@ footer strong{color:var(--muted);}
     </div>
   </section>
 
-  <!-- ===================== 2) الجامعة الخضراء ===================== -->
+  <!-- ===================== 2) مؤشرات بيئية (أهداف المبادرة) ===================== -->
+  <section class="page-section" id="indicators" data-title="مؤشرات بيئية">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <span class="eyebrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16"/><path d="M7 19V9M12 19V5M17 19v-7"/></svg>
+          الأهداف الاستراتيجية لعام 2026
+        </span>
+        <h2>أهداف المبادرة على الأرض</h2>
+        <p>أرقام طموحة تترجم رؤية مسابقة المشروعات الذكية الخضراء بجامعة القاهرة إلى مؤشرات أداء قابلة للقياس والمتابعة.</p>
+      </div>
+
+      <div class="indicators-grid stat-grid">
+        <div class="indicator-card stat-card reveal">
+          <span class="stat-number">100%</span>
+          <h3>دمج الاستدامة في المناهج</h3>
+          <p>دمج قيم الاستدامة في مناهج المرحلة الجامعية والدراسات العليا.</p>
+        </div>
+        <div class="indicator-card stat-card reveal">
+          <span class="stat-number">1555</span>
+          <h3>تدريب الطلاب والمعلمين</h3>
+          <p>طالب/معلم مدرَّب على استراتيجيات التدريس الأخضر وتقنيات التعليم الحديثة.</p>
+        </div>
+        <div class="indicator-card stat-card reveal">
+          <span class="stat-number">15%</span>
+          <h3>خفض البصمة الكربونية</h3>
+          <p>نسبة خفض مستهدفة في البصمة الكربونية للحرم الجامعي.</p>
+        </div>
+        <div class="indicator-card stat-card reveal">
+          <span class="stat-number">138</span>
+          <h3>مدرسة مستهدفة</h3>
+          <p>مدرسة بمحافظة الجيزة ضمن خطة التوسع (متوسط 2020–2050 مدرسة/تلميذ).</p>
+        </div>
+      </div>
+
+      <div class="indicators-banner reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-6"/></svg>
+        <p>تطوير منصة رقمية (Green Dashboard) ونشر ثقافة الاقتصاد الدوار عبر إدارة المخلفات وإعادة التدوير.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 3) الجامعة الخضراء ===================== -->
   <section class="page-section" id="green-university" data-title="الجامعة الخضراء">
     <div class="wrap">
       <div class="split">
@@ -1023,7 +1103,7 @@ footer strong{color:var(--muted);}
     </div>
   </section>
 
-  <!-- ===================== 3) المدارس الخضراء ===================== -->
+  <!-- ===================== 4) المدارس الخضراء ===================== -->
   <section class="page-section" id="green-schools" data-title="المدارس الخضراء">
     <div class="wrap">
       <div class="split" style="grid-template-columns:.9fr 1.1fr;">
@@ -1065,7 +1145,7 @@ footer strong{color:var(--muted);}
     </div>
   </section>
 
-  <!-- ===================== 4) همسات تربوية ===================== -->
+  <!-- ===================== 5) همسات تربوية ===================== -->
   <section class="page-section" id="whispers" data-title="همسات تربوية">
     <div class="wrap">
       <div class="section-head center reveal">
@@ -1180,43 +1260,6 @@ footer strong{color:var(--muted);}
           </div>
         </article>
 
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== 5) مؤشرات بيئية ===================== -->
-  <section class="page-section" id="indicators" data-title="مؤشرات بيئية">
-    <div class="wrap">
-      <div class="section-head center reveal">
-        <span class="eyebrow">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16"/><path d="M7 19V9M12 19V5M17 19v-7"/></svg>
-          مؤشرات بيئية
-        </span>
-        <h2>أهداف المبادرة على الأرض</h2>
-        <p>محاور رئيسية توجّه عمل المبادرة وتقيس أثرها داخل البيئة الجامعية والمدرسية.</p>
-      </div>
-
-      <div class="indicators-grid">
-        <div class="indicator-card reveal">
-          <div class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg></div>
-          <h3>ترشيد الطاقة</h3>
-          <p>تقليل الاستهلاك غير الضروري للكهرباء بالمرافق التعليمية.</p>
-        </div>
-        <div class="indicator-card reveal">
-          <div class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h10M4 17h13"/></svg></div>
-          <h3>خفض استخدام الورق</h3>
-          <p>التحول التدريجي نحو المحتوى والتقييم الرقمي.</p>
-        </div>
-        <div class="indicator-card reveal">
-          <div class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V9"/><path d="M12 9c0-4 3-7 7-7 0 4-3 7-7 7z"/><path d="M12 9C12 5 9 2 5 2c0 4 3 7 7 7z"/></svg></div>
-          <h3>زيادة المساحات الخضراء</h3>
-          <p>دعم مبادرات الزراعة داخل الحرم الجامعي والمدارس.</p>
-        </div>
-        <div class="indicator-card reveal">
-          <div class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/></svg></div>
-          <h3>نشر الوعي البيئي</h3>
-          <p>محتوى توعوي مستمر يصل إلى الطلاب والمعلمين.</p>
-        </div>
       </div>
     </div>
   </section>
@@ -1381,6 +1424,34 @@ footer strong{color:var(--muted);}
           </div>
         </article>
 
+        <!-- وعي تربوي أخضر: نحو منظومة تعليمية مستدامة -->
+        <article class="resource-card reveal">
+          <div class="resource-head">
+            <span class="ic">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V9"/><path d="M12 9c0-4 3-7 7-7 0 4-3 7-7 7z"/><path d="M12 9C12 5 9 2 5 2c0 4 3 7 7 7z"/></svg>
+            </span>
+            <h3>وعي وتربوي أخضر</h3>
+          </div>
+          <p class="desc">وعي تربوي أخضر: نحو منظومة تعليمية مستدامة — مسابقة المشروعات الذكية الخضراء بجامعة القاهرة (14 صفحة).</p>
+          <div class="resource-actions">
+            <a class="btn-sm primary" href="assets/docs/green_awareness_2026.pdf" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M5 21h14a1 1 0 0 0 1-1V8l-5-5H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1z"/></svg>
+              فتح الملف
+            </a>
+            <button class="btn-sm focus-btn" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3m11 0h3a2 2 0 0 0 2-2v-3"/></svg>
+              تركيز العرض
+            </button>
+          </div>
+          <div class="preview-area" data-src="assets/docs/green_awareness_2026.pdf">
+            <div class="preview-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-14 9V3z"/></svg>
+              <span>المعاينة غير محمّلة الآن</span>
+              <button class="btn-sm load-preview-btn" type="button">تحميل المعاينة</button>
+            </div>
+          </div>
+        </article>
+
         <!-- إنفوجرافيك -->
         <article class="resource-card reveal">
           <div class="resource-head">
@@ -1417,7 +1488,7 @@ footer strong{color:var(--muted);}
 
 <footer>
   <div class="wrap">
-    <strong>مبادرة الوعي البيئي التربوي</strong> — نحو جامعة خضراء ومجتمع تعليمي مستدام · {{YEAR}}
+    <strong>نحو وعي تربوي أخضر</strong> — نحو جامعة خضراء ومجتمع تعليمي مستدام · {{YEAR}}
   </div>
 </footer>
 
